@@ -9,6 +9,9 @@ public class PrincipalView extends javax.swing.JFrame {
     public PrincipalView() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
+        config = new ConfigView();
+        PrincipalView.desktopPane.add(config);
+        config.setVisible(true);
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -18,7 +21,6 @@ public class PrincipalView extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         btn_config = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -27,17 +29,13 @@ public class PrincipalView extends javax.swing.JFrame {
         fileMenu.setText("Opciones");
 
         btn_config.setMnemonic('o');
-        btn_config.setText("Configuracion de variables");
+        btn_config.setText("Configuracion de simulacion");
         btn_config.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_configActionPerformed(evt);
             }
         });
         fileMenu.add(btn_config);
-
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Save");
-        fileMenu.add(saveMenuItem);
 
         exitMenuItem.setMnemonic('x');
         exitMenuItem.setText("Exit");
@@ -74,7 +72,7 @@ public class PrincipalView extends javax.swing.JFrame {
         
         if(config == null || config.isClosed()){
          config = new ConfigView();
-         this.desktopPane.add(config);
+         PrincipalView.desktopPane.add(config);
         }
         config.setVisible(true);
         
@@ -127,7 +125,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }
