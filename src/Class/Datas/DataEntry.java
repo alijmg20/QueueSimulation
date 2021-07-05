@@ -39,8 +39,8 @@ public class DataEntry  {
         this.timeSimulation = 0;
         this.quantityCustomers = 0;
         this.quantityServers = 0;
-        this.ArrivedCustomers = null;
-        this.ServiceTime = null;
+        this.ArrivedCustomers = new DefaultTableModel();
+        this.ServiceTime = new DefaultTableModel();
         this.costTimeCustomer = 0;
         this.costTimeWaitCustomer = 0;
         this.busyServercost = 0;
@@ -138,10 +138,7 @@ public class DataEntry  {
     }
     
     public void setEventTable(String eventTable){
-        if(eventTable.equals("si") )
-            this.eventTable = true;
-        else
-            this.eventTable = false;
+        this.eventTable = eventTable.equals("si");
     }
 
     public void setTimeSimulation(double timeSimulation) {

@@ -14,16 +14,23 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConfigViewService extends javax.swing.JInternalFrame {
 
-    public int rows;
+    
     public DefaultTableModel modelService;
     
     public ConfigViewService() {
         initComponents();
-        String[] titles = {"Tiempo de servicio", "Probabilidad", "Intervalo Desde", "Intervalo Hasta"};
+        String[] titles = {"Probabilidad", "Intervalo Desde", "Intervalo Hasta"};
         modelService = new DefaultTableModel(null, titles);
         this.tableArrive.setModel(modelService);
-        this.rows = 0;
+        
     }
+
+    ConfigViewService(DefaultTableModel serviceTime) {
+        initComponents();
+        this.modelService = serviceTime;
+        this.tableArrive.setModel(modelService);
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -290,10 +297,8 @@ public class ConfigViewService extends javax.swing.JInternalFrame {
             
         
         if (this.validateData(Double.parseDouble(probability + "f"), Integer.parseInt(from), Integer.parseInt(to))) {
-            rows++;
-            String numero = Integer.toString(rows);
+            
             this.modelService.addRow(new Object[]{
-                numero,
                 probability,
                 from,
                 to
@@ -322,7 +327,7 @@ public class ConfigViewService extends javax.swing.JInternalFrame {
         int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que desea eliminar todas las filas?");
         if (decision == 0) {
             this.deleteAll();
-            this.rows = 0;
+            
         }
         
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -364,7 +369,6 @@ public class ConfigViewService extends javax.swing.JInternalFrame {
         String[] titles = {"Tiempo entre llegadas", "Probabilidad", "Intervalo Desde", "Intervalo Hasta"};
         modelService = new DefaultTableModel(null, titles);
         this.tableArrive.setModel(modelService);
-        this.rows = 0;
     }
 
     private boolean validateData(double probability, int from, int to) {

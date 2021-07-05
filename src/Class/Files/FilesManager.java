@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class FilesManager {
 
@@ -41,7 +42,6 @@ public class FilesManager {
             pw.println(data.getTimeUnit() + " ;" + data.getEventTable() + " ;" + data.getTimeSimulation() + " ;" + data.getQuantityCustomers() + " ;"
                     + data.getQuantityServers() + " ;" + data.getCostTimeCustomer() + " ;" + data.getCostTimeWaitCustomer() + " ;" + data.getBusyServercost() + " ;"
                     + data.getIdleServerCost() + " ;" + data.getExtraTimeServerCost() + " ;" + data.getCostNormalOperation() + " ;" + data.getExtraOperationCost() + " ;");
-            pw.println();
 
             //Here you can write the customers arrived table
             for (int i = 12; i < 15; i++) {
@@ -50,9 +50,9 @@ public class FilesManager {
             pw.println();
             for (int i = 0; i < data.getArrivedCustomers().getRowCount(); i++) {
                 //Values
-                pw.println(data.getArrivedCustomers().getValueAt(i, 1) + ";" + data.getArrivedCustomers().getValueAt(i, 2) + ";" + data.getArrivedCustomers().getValueAt(i, 3) + ";");
+                pw.println(data.getArrivedCustomers().getValueAt(i, 0) + ";" + data.getArrivedCustomers().getValueAt(i, 1) + ";" + data.getArrivedCustomers().getValueAt(i, 2) + ";");
             }
-            pw.println();
+
             //Here you can read the service time table
             for (int i = 12; i < 15; i++) {
                 pw.print(dataTitles[i] + ";");//Titles
@@ -60,7 +60,7 @@ public class FilesManager {
             pw.println();
             for (int i = 0; i < data.getServiceTime().getRowCount(); i++) {
                 //Values
-                pw.println(data.getServiceTime().getValueAt(i, 1) + ";" + data.getServiceTime().getValueAt(i, 2) + ";" + data.getServiceTime().getValueAt(i, 3));
+                pw.println(data.getServiceTime().getValueAt(i, 0) + ";" + data.getServiceTime().getValueAt(i, 1) + ";" + data.getServiceTime().getValueAt(i, 2));
             }
 
             pw.close();
@@ -73,30 +73,57 @@ public class FilesManager {
 
     public DataEntry readText(String file) {
         DataEntry data = new DataEntry();
-        
+        String[] titles = {"Probabilidad", "Intervalo Desde", "Intervalo Hasta"};
+        DefaultTableModel modelArrived = new DefaultTableModel(null, titles);
+        DefaultTableModel modelService = new DefaultTableModel(null, titles);
         File ruta = new File(file);
         try {
 
             FileReader fi = new FileReader(ruta);
             BufferedReader bu = new BufferedReader(fi);
 
-            
             String linea = bu.readLine();
-            
+            StringTokenizer st;
             while (!(linea = bu.readLine()).contains("Probabilidad")) {
-                StringTokenizer st = new StringTokenizer(linea, ";");
-                data.setTimeUnit(st.nextToken());
-                data.setEventTable((st.nextToken()));
-                data.setTimeSimulation(Double.parseDouble(st.nextToken()));
+       //     while ((linea = bu.readLine()) != null) {
+                st = new StringTokenizer(linea, ";");
+                data.setTimeUnit(st.nextToken().trim());
+                data.setEventTable(st.nextToken().trim());
+                data.setTimeSimulation(Double.parseDouble(st.nextToken().trim()));
+                data.setQuantityCustomers(Integer.parseInt(st.nextToken().trim()));
+                data.setQuantityServers(Integer.parseInt(st.nextToken().trim()));
+                data.setCostTimeCustomer(Double.parseDouble(st.nextToken().trim()));
+                data.setCostTimeWaitCustomer(Double.parseDouble(st.nextToken().trim()));
+                data.setBusyServercost(Double.parseDouble(st.nextToken().trim()));
+                data.setIdleServerCost(Double.parseDouble(st.nextToken().trim()));
+                data.setExtraTimeServerCost(Double.parseDouble(st.nextToken().trim()));
+                data.setCostNormalOperation(Double.parseDouble(st.nextToken().trim()));
+                data.setExtraOperationCost(Double.parseDouble(st.nextToken().trim()));
+
             }
             while (!(linea = bu.readLine()).contains("Probabilidad")) {
-                System.out.println(linea);
+                st = new StringTokenizer(linea, ";");
+                modelArrived.addRow(new Object[]{
+                    st.nextToken().trim(),
+                    st.nextToken().trim(),
+                    st.nextToken().trim()
+                });
             }
-            while ((linea = bu.readLine())!=null) {
-                System.out.println(linea);
+            data.setArrivedCustomers(modelArrived);
+
+            while ((linea = bu.readLine()) != null) {
+                st = new StringTokenizer(linea, ";");
+                modelService.addRow(new Object[]{
+                    st.nextToken().trim(),
+                    st.nextToken().trim(),
+                    st.nextToken().trim()
+                });
+
             }
-            
+            data.setServiceTime(modelService);
+
             bu.close();
+            JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar archivo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(ex.getMessage());

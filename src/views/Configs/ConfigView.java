@@ -22,9 +22,6 @@ import views.Simulation.SimulationView;
  */
 public class ConfigView extends javax.swing.JInternalFrame {
 
-    
-    
-    
     //Views configs
     public ConfigViewArrive configArrive = null;
     public ConfigViewService configService = null;
@@ -36,7 +33,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
     public ConfigView() {
         initComponents();
         String[] unit = {"Seleccione una opcion", "Segundos", "Minutos", "Horas", "Dias", "Semanas", "Meses"};
-        String[] desicion = {"Seleccione una opcion", "Si", "No"};
+        String[] desicion = {"Seleccione una opcion", "si", "no"};
         this.cbUnitTime.setModel(this.loadComboTime(unit));
         this.cbDecision.setModel(this.loadComboTime(desicion));
     }
@@ -94,7 +91,6 @@ public class ConfigView extends javax.swing.JInternalFrame {
         jLabel22 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
@@ -398,14 +394,12 @@ public class ConfigView extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
-        jButton3.setText("Guardar");
+        jButton3.setText("Enviar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-
-        jButton4.setText("Actualizar");
 
         jButton5.setText("Limpiar todo");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -419,12 +413,11 @@ public class ConfigView extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(69, 69, 69)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,7 +425,6 @@ public class ConfigView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jButton4)
                     .addComponent(jButton5))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -540,7 +532,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        
         if (configArrive == null || configArrive.isClosed()) {
             configArrive = new ConfigViewArrive();
             PrincipalView.getDesktopPane().add(configArrive);
@@ -560,12 +552,13 @@ public class ConfigView extends javax.swing.JInternalFrame {
             DataEntry data = null;
             data = this.ReadDataInputs();
             SimulationView viewSimulation = new SimulationView(data);
-            message("Datos añadidos exitosamente",1);
+            message("Datos enviados exitosamente", 1);
             PrincipalView.desktopPane.add(viewSimulation);
             viewSimulation.setVisible(true);
             this.dispose();
         } else {
             message("No ha ingresado algun valor", 3);
+            System.out.println();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -617,25 +610,25 @@ public class ConfigView extends javax.swing.JInternalFrame {
         JFileChooser jf = new JFileChooser();
         FilesManager fm = new FilesManager();
         int el = jf.showOpenDialog(this);
-        
+
         if (el == JFileChooser.APPROVE_OPTION) {
             this.txtroute.setText(jf.getSelectedFile().getAbsolutePath());
-           DataEntry data =  fm.readText(jf.getSelectedFile().getAbsolutePath());
-           
+            DataEntry data = fm.readText(jf.getSelectedFile().getAbsolutePath());
+            this.WriteDataInImputs(data);
         }
-        
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        if(this.validateEntrys()){
+        if (this.validateEntrys()) {
             JFileChooser jf = new JFileChooser();
             FilesManager filesManager = new FilesManager();
             DataEntry data = null;
             data = this.ReadDataInputs();
-            message("Se ha creado el archivo Data.csv exitosamente en el directorio Documentos",1);
-            filesManager.save_txt(data,jf);
-        }else{
-            message("Verifica que ingresaste todos los archivos",3);
+            message("Se ha creado el archivo Data.csv exitosamente en el directorio Documentos", 1);
+            filesManager.save_txt(data, jf);
+        } else {
+            message("Verifica que ingresaste todos los datos al archivo archivos", 3);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -677,40 +670,71 @@ public class ConfigView extends javax.swing.JInternalFrame {
     }
 
     public void message(String text, int operation) {
-        if(operation == 1){
+        if (operation == 1) {
             JOptionPane.showMessageDialog(null, text, " Operacion exitosa ", JOptionPane.INFORMATION_MESSAGE);
-        }else if(operation == 2){
+        } else if (operation == 2) {
             JOptionPane.showMessageDialog(null, text, " Operacion denegada ", JOptionPane.WARNING_MESSAGE);
-        }else if(operation == 3){
+        } else if (operation == 3) {
             JOptionPane.showMessageDialog(null, text, " Operacion Erronea ", JOptionPane.ERROR_MESSAGE);
         }
-        
-    }
-    
-    public DataEntry ReadDataInputs(){
-            DataEntry data;
-            String unitTime = this.cbUnitTime.getSelectedItem().toString();
-            boolean eventTable = this.cbDecision.getSelectedItem().toString().equals("si");
-            double timeSimulation = Double.parseDouble(this.txtTimeSimulation.getText().replace(',', '.'));
-            int quantityCustomers = Integer.parseInt(this.txtQuantityCustomers.getText());
-            int quantityServers = Integer.parseInt(this.txtQuantityServer.getText());
 
-            /*
-             cost variable
-             */
-            double costTimeCustomer = Double.parseDouble(this.txtCostTimeCustomer.getText().replace(',', '.'));
-            double costTimeWaitCustomer = Double.parseDouble(this.txtCostTimeWaitCustomer.getText().replace(',', '.'));
-            double busyServercost = Double.parseDouble(this.txtBusyServerCost.getText().replace(',', '.'));
-            double idleServerCost = Double.parseDouble(this.txtIdleServerCost.getText().replace(',', '.'));
-            double extraTimeServerCost = Double.parseDouble(this.txtExtraTimeServerCost.getText().replace(',', '.'));
-            double costNormalOperation = Double.parseDouble(this.txtCostNormalOperation.getText().replace(',', '.'));
-            double extraOperationCost = Double.parseDouble(this.txtExtraOperationCost.getText().replace(',', '.'));
-            
-            data = new DataEntry( unitTime,  eventTable,  timeSimulation,  quantityCustomers,  quantityServers,  this.arriveTable,  this.serviceTable,  costTimeCustomer,  costTimeWaitCustomer,  busyServercost,  idleServerCost,  extraTimeServerCost,  costNormalOperation, extraOperationCost);
-            return data;
-            
-            
     }
+
+    public DataEntry ReadDataInputs() {
+        DataEntry data;
+        String unitTime = this.cbUnitTime.getSelectedItem().toString();
+        boolean eventTable = this.cbDecision.getSelectedItem().toString().equals("si");
+        double timeSimulation = Double.parseDouble(this.txtTimeSimulation.getText().replace(',', '.'));
+        int quantityCustomers = Integer.parseInt(this.txtQuantityCustomers.getText());
+        int quantityServers = Integer.parseInt(this.txtQuantityServer.getText());
+
+        /*
+         cost variable
+         */
+        double costTimeCustomer = Double.parseDouble(this.txtCostTimeCustomer.getText().replace(',', '.'));
+        double costTimeWaitCustomer = Double.parseDouble(this.txtCostTimeWaitCustomer.getText().replace(',', '.'));
+        double busyServercost = Double.parseDouble(this.txtBusyServerCost.getText().replace(',', '.'));
+        double idleServerCost = Double.parseDouble(this.txtIdleServerCost.getText().replace(',', '.'));
+        double extraTimeServerCost = Double.parseDouble(this.txtExtraTimeServerCost.getText().replace(',', '.'));
+        double costNormalOperation = Double.parseDouble(this.txtCostNormalOperation.getText().replace(',', '.'));
+        double extraOperationCost = Double.parseDouble(this.txtExtraOperationCost.getText().replace(',', '.'));
+
+        data = new DataEntry(unitTime, eventTable, timeSimulation, quantityCustomers, quantityServers, this.arriveTable, this.serviceTable, costTimeCustomer, costTimeWaitCustomer, busyServercost, idleServerCost, extraTimeServerCost, costNormalOperation, extraOperationCost);
+        return data;
+
+    }
+
+    public void WriteDataInImputs(DataEntry data) {
+        this.cbUnitTime.setSelectedItem(data.getTimeUnit());
+        this.cbDecision.setSelectedItem(data.getEventTable());
+        this.txtTimeSimulation.setText(String.valueOf(data.getTimeSimulation()));
+        this.txtQuantityCustomers.setText(String.valueOf(data.getQuantityCustomers()));
+        this.txtQuantityServer.setText(String.valueOf(data.getQuantityServers()));
+
+        /* costs variables*/
+        this.txtCostTimeCustomer.setText(String.valueOf(data.getCostTimeCustomer()));
+        this.txtCostTimeWaitCustomer.setText(String.valueOf(data.getCostTimeWaitCustomer()));
+        this.txtBusyServerCost.setText(String.valueOf(data.getBusyServercost()));
+        this.txtIdleServerCost.setText(String.valueOf(data.getIdleServerCost()));
+        this.txtExtraTimeServerCost.setText(String.valueOf(data.getExtraTimeServerCost()));
+        this.txtCostNormalOperation.setText(String.valueOf(data.getCostNormalOperation()));
+        this.txtExtraOperationCost.setText(String.valueOf(data.getExtraOperationCost()));
+        
+        if (configArrive == null || configArrive.isClosed()) {
+            arriveTable = data.getArrivedCustomers();
+            configArrive = new ConfigViewArrive(data.getArrivedCustomers());
+            PrincipalView.getDesktopPane().add(configArrive);
+            
+        }
+        
+        if (configService == null || configService.isClosed()) {
+            serviceTable = data.getServiceTime();
+            configService = new ConfigViewService(data.getServiceTime());
+            PrincipalView.getDesktopPane().add(configService);
+
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btn_decision;
@@ -720,7 +744,6 @@ public class ConfigView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

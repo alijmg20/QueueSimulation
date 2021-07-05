@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package views.Simulation;
 
 import Class.Datas.DataEntry;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author alijm
- */
+
 public class SimulationView extends javax.swing.JInternalFrame {
 
     private DataEntry data;

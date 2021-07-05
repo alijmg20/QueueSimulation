@@ -14,16 +14,23 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConfigViewArrive extends javax.swing.JInternalFrame {
 
-    public int rows;
+    
     public DefaultTableModel modelArrive;
     
     public ConfigViewArrive() {
         initComponents();
-        String[] titles = {"Tiempo entre llegadas", "Probabilidad", "Intervalo Desde", "Intervalo Hasta"};
+        String[] titles = {"Probabilidad", "Intervalo Desde", "Intervalo Hasta"};
         modelArrive = new DefaultTableModel(null, titles);
         this.tableArrive.setModel(modelArrive);
-        this.rows = 0;
+        
     }
+    
+    public ConfigViewArrive(DefaultTableModel arrivedTable) {
+        initComponents();
+        this.modelArrive = arrivedTable;
+        this.tableArrive.setModel(modelArrive);
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -290,10 +297,9 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
             
         
         if (this.validateData(Double.parseDouble(probability + "f"), Integer.parseInt(from), Integer.parseInt(to))) {
-            rows++;
-            String numero = Integer.toString(rows);
+            
+            
             this.modelArrive.addRow(new Object[]{
-                numero,
                 probability,
                 from,
                 to
@@ -322,7 +328,6 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
         int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que desea eliminar todas las filas?");
         if (decision == 0) {
             this.deleteAll();
-            this.rows = 0;
         }
         
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -364,7 +369,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
         String[] titles = {"Tiempo entre llegadas", "Probabilidad", "Intervalo Desde", "Intervalo Hasta"};
         modelArrive = new DefaultTableModel(null, titles);
         this.tableArrive.setModel(modelArrive);
-        this.rows = 0;
+        
     }
 
     private boolean validateData(double probability, int from, int to) {
@@ -382,8 +387,6 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
                     || addProbability(probability) > 1
                     
                     ) {
-                //System.out.println(from + " " + modelArrive.getValueAt(i, 2).toString());
-                //System.out.println(to + " " + modelArrive.getValueAt(i, 3).toString());
                 return false;
             }
         }
