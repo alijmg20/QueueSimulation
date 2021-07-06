@@ -14,23 +14,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConfigViewArrive extends javax.swing.JInternalFrame {
 
-    
     public DefaultTableModel modelArrive;
-    
+
     public ConfigViewArrive() {
         initComponents();
-        String[] titles = {"Probabilidad", "Intervalo Desde", "Intervalo Hasta"};
+        String[] titles = {"Tiempo de llegada","Probabilidad"};
         modelArrive = new DefaultTableModel(null, titles);
         this.tableArrive.setModel(modelArrive);
-        
+
     }
-    
+
     public ConfigViewArrive(DefaultTableModel arrivedTable) {
         initComponents();
         this.modelArrive = arrivedTable;
         this.tableArrive.setModel(modelArrive);
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -44,10 +42,8 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtProbability = new javax.swing.JFormattedTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtIntervalFrom = new javax.swing.JFormattedTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtIntervalTo = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtTimeArrived = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -99,15 +95,10 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
 
         txtProbability.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0,00"))));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Intervalo desde: ");
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Tiempo de Llegada: ");
 
-        txtIntervalFrom.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Intervalo hasta: ");
-
-        txtIntervalTo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtTimeArrived.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -120,32 +111,24 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtProbability, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtIntervalFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtIntervalTo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtTimeArrived, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtTimeArrived, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(txtProbability, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIntervalFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIntervalTo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(107, 107, 107))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Opciones de la tabla"));
@@ -239,7 +222,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton6))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -290,23 +273,19 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String timeArrived = this.txtTimeArrived.getText();
         String probability = this.txtProbability.getText();
-        String from = this.txtIntervalFrom.getText();
-        String to = this.txtIntervalTo.getText();
-        if(!probability.isEmpty() && !from.isEmpty() && !to.isEmpty() ){
-            
-        
-        if (this.validateData(Double.parseDouble(probability + "f"), Integer.parseInt(from), Integer.parseInt(to))) {
-            
-            
-            this.modelArrive.addRow(new Object[]{
-                probability,
-                from,
-                to
-            });
-        } else {
-            JOptionPane.showMessageDialog(null, "Revise los datos o verifique que la probabilidad no sea mayor a 1");
-        }
+        if (!timeArrived.isEmpty()&&!probability.isEmpty()) {
+
+            if (this.validateData(Integer.parseInt(timeArrived.trim()),Double.parseDouble(probability + "f"))) {
+
+                this.modelArrive.addRow(new Object[]{
+                    timeArrived,
+                    probability
+                });
+            } else {
+                JOptionPane.showMessageDialog(null, "Revise los datos o verifique que la probabilidad no sea mayor a 1");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "No ingreso algun dato para la fila nueva");
         }
@@ -319,8 +298,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.txtIntervalFrom.setText("");
-        this.txtIntervalTo.setText("");
+        this.txtTimeArrived.setText("");
         this.txtProbability.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -329,20 +307,19 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
         if (decision == 0) {
             this.deleteAll();
         }
-        
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         int rowSelected = this.tableArrive.getSelectedRow();
-        if(rowSelected != -1){
-            
-        
-        int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que desea eliminar esta fila?");
-        if (decision == 0) {
-            modelArrive.removeRow(rowSelected);
-            JOptionPane.showMessageDialog(null, "Tabla actualizada");
-        }
-        }else{
+        if (rowSelected != -1) {
+
+            int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que desea eliminar esta fila?");
+            if (decision == 0) {
+                modelArrive.removeRow(rowSelected);
+                JOptionPane.showMessageDialog(null, "Tabla actualizada");
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna fila");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -350,58 +327,51 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ConfigView.arriveTable = this.modelArrive;
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private String convert() {
         String text = "";
         for (int i = 0; i < this.tableArrive.getRowCount(); i++) {
             text += modelArrive.getValueAt(i, 0).toString() + " ; "
-                    + modelArrive.getValueAt(i, 1).toString() + " ; "
-                    + modelArrive.getValueAt(i, 2).toString() + " ; "
-                    + modelArrive.getValueAt(i, 3).toString() + " \n ";
+                    + modelArrive.getValueAt(i, 1).toString() + " ; \n";
         }
 
         return text;
     }
 
     private void deleteAll() {
-        String[] titles = {"Tiempo entre llegadas", "Probabilidad", "Intervalo Desde", "Intervalo Hasta"};
+        String[] titles = {"Tiempo de llegada", "Probabilidad"};
         modelArrive = new DefaultTableModel(null, titles);
         this.tableArrive.setModel(modelArrive);
-        
+
     }
 
-    private boolean validateData(double probability, int from, int to) {
+    private boolean validateData(int timeArrived,double probability) {
 
-        if (probability > 1.0f
-                || from > to
-                || to < 0
-                || from < 0) {
+        if (timeArrived < 0
+                ||probability > 1.0f) {
             return false;
         }
 
         for (int i = 0; i < modelArrive.getRowCount(); i++) {
-            if (from <= Integer.parseInt(modelArrive.getValueAt(i, 2).toString())
-                    || to <= Integer.parseInt(modelArrive.getValueAt(i, 3).toString())
-                    || addProbability(probability) > 1
-                    
-                    ) {
+            if (     addProbability(probability) > 1 
+                    || timeArrived == Integer.parseInt(this.modelArrive.getValueAt(i, 0).toString())) {
                 return false;
             }
         }
         return true;
     }
-    
-    private double addProbability(double probability){
-        double add = 0f;
-        
-        for(int i = 0; i < modelArrive.getRowCount(); i++){
-            add += Double.parseDouble(modelArrive.getValueAt(i, 1).toString()+"f");
-        }
-        return add+probability;
-    }
 
+    private double addProbability(double probability) {
+        double add = 0f;
+
+        for (int i = 0; i < modelArrive.getRowCount(); i++) {
+            add += Double.parseDouble(modelArrive.getValueAt(i, 1).toString() + "f");
+        }
+        return add + probability;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -412,8 +382,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -421,8 +390,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableArrive;
-    private javax.swing.JFormattedTextField txtIntervalFrom;
-    private javax.swing.JFormattedTextField txtIntervalTo;
     private javax.swing.JFormattedTextField txtProbability;
+    private javax.swing.JFormattedTextField txtTimeArrived;
     // End of variables declaration//GEN-END:variables
 }

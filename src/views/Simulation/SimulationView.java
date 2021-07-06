@@ -15,7 +15,8 @@ public class SimulationView extends javax.swing.JInternalFrame {
     public SimulationView(DataEntry data) {
         initComponents();
         this.data = data;
-        JOptionPane.showMessageDialog(null,"La cantidad de clientes son: " +this.data.getQuantityCustomers());
+        
+        
     }
 
     @SuppressWarnings("unchecked")

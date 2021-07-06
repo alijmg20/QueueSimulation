@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -14,10 +13,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class FilesManager {
 
-    private String file;
+    private final String file;
 
     public FilesManager() {
-        this.file = "Data.csv";
+        this.file = "Data_Entrys_simulation.csv";
     }
 
     public void save_txt(DataEntry data, JFileChooser jf) {
@@ -27,15 +26,13 @@ public class FilesManager {
             String[] dataTitles = {"Unidad de tiempo", "Tabla de eventos", "tiempo de simulacion", "cantidad de clientes",
                 "Cantidad de servidores", "costo del tiempo en servicio del cliente", "Costo de tiempo de espera del cliente",
                 "Costo del servidor ocupado", "costo del servidor desocupado", "costo del tiempo extra del servidor",
-                "costo normal de la operacion", "costo de operacion extra", "Probabilidad", "intervalo Desde", "Intervalo Hasta"};
+                "costo normal de la operacion", "costo de operacion extra"};
+            String[] titlesArrivedTable = {"Tiempo de llegada", "Probabilidad"};
+            String[] titlesServiceTable = {"Tiempo de servicio", "Probabilidad"};
             fw = new FileWriter(jf.getCurrentDirectory() + "/" + file);
             pw = new PrintWriter(fw);
 
-//            for (int i = 0; i < rp.cantidadRegistro(); i++) {
-//                p = rp.obtenerRegistro(i);
-//                pw.println(String.valueOf(p.getCodigo() + ", " + p.getNombre() + ", " + p.getPrecio() + ", " + p.getDescripcion()));
-//            }
-            for (int i = 0; i < dataTitles.length - 3; i++) {
+            for (int i = 0; i < dataTitles.length; i++) {
                 pw.print(dataTitles[i] + ";");
             }
             pw.println();
@@ -44,23 +41,23 @@ public class FilesManager {
                     + data.getIdleServerCost() + " ;" + data.getExtraTimeServerCost() + " ;" + data.getCostNormalOperation() + " ;" + data.getExtraOperationCost() + " ;");
 
             //Here you can write the customers arrived table
-            for (int i = 12; i < 15; i++) {
-                pw.print(dataTitles[i] + ";"); //Titles
+            for (int i = 0; i < titlesArrivedTable.length; i++) {
+                pw.print(titlesArrivedTable[i] + ";"); //Titles
             }
             pw.println();
             for (int i = 0; i < data.getArrivedCustomers().getRowCount(); i++) {
                 //Values
-                pw.println(data.getArrivedCustomers().getValueAt(i, 0) + ";" + data.getArrivedCustomers().getValueAt(i, 1) + ";" + data.getArrivedCustomers().getValueAt(i, 2) + ";");
+                pw.println(data.getArrivedCustomers().getValueAt(i, 0) + ";" + data.getArrivedCustomers().getValueAt(i, 1) + ";");
             }
 
             //Here you can read the service time table
-            for (int i = 12; i < 15; i++) {
-                pw.print(dataTitles[i] + ";");//Titles
+            for (int i = 0; i < titlesServiceTable.length; i++) {
+                pw.print(titlesServiceTable[i] + ";");//Titles
             }
             pw.println();
             for (int i = 0; i < data.getServiceTime().getRowCount(); i++) {
                 //Values
-                pw.println(data.getServiceTime().getValueAt(i, 0) + ";" + data.getServiceTime().getValueAt(i, 1) + ";" + data.getServiceTime().getValueAt(i, 2));
+                pw.println(data.getServiceTime().getValueAt(i, 0) + ";" + data.getServiceTime().getValueAt(i, 1) + ";");
             }
 
             pw.close();
@@ -73,9 +70,10 @@ public class FilesManager {
 
     public DataEntry readText(String file) {
         DataEntry data = new DataEntry();
-        String[] titles = {"Probabilidad", "Intervalo Desde", "Intervalo Hasta"};
-        DefaultTableModel modelArrived = new DefaultTableModel(null, titles);
-        DefaultTableModel modelService = new DefaultTableModel(null, titles);
+        String[] titlesArrivedTable = {"Tiempo de llegada", "Probabilidad"};
+        String[] titlesServiceTable = {"Tiempo de servicio", "Probabilidad"};
+        DefaultTableModel modelArrived = new DefaultTableModel(null, titlesArrivedTable);
+        DefaultTableModel modelService = new DefaultTableModel(null, titlesServiceTable);
         File ruta = new File(file);
         try {
 
@@ -84,8 +82,8 @@ public class FilesManager {
 
             String linea = bu.readLine();
             StringTokenizer st;
-            while (!(linea = bu.readLine()).contains("Probabilidad")) {
-       //     while ((linea = bu.readLine()) != null) {
+            while (!(linea = bu.readLine()).contains("Tiempo de llegada")) {
+                
                 st = new StringTokenizer(linea, ";");
                 data.setTimeUnit(st.nextToken().trim());
                 data.setEventTable(st.nextToken().trim());
@@ -101,10 +99,9 @@ public class FilesManager {
                 data.setExtraOperationCost(Double.parseDouble(st.nextToken().trim()));
 
             }
-            while (!(linea = bu.readLine()).contains("Probabilidad")) {
+            while (!(linea = bu.readLine()).contains("Tiempo de servicio")) {
                 st = new StringTokenizer(linea, ";");
                 modelArrived.addRow(new Object[]{
-                    st.nextToken().trim(),
                     st.nextToken().trim(),
                     st.nextToken().trim()
                 });
@@ -115,7 +112,6 @@ public class FilesManager {
                 st = new StringTokenizer(linea, ";");
                 modelService.addRow(new Object[]{
                     st.nextToken().trim(),
-                    st.nextToken().trim(),
                     st.nextToken().trim()
                 });
 
@@ -123,7 +119,7 @@ public class FilesManager {
             data.setServiceTime(modelService);
 
             bu.close();
-            JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente");
+            JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente","Operacion exitosa",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar archivo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(ex.getMessage());

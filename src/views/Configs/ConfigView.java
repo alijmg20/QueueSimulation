@@ -563,7 +563,9 @@ public class ConfigView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.cbUnitTime.setSelectedIndex(0);
+        int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas limpiar todos los campos?");
+        if(decision == 0){
+            this.cbUnitTime.setSelectedIndex(0);
         this.cbDecision.setSelectedIndex(0);
         this.txtBusyServerCost.setText("");
         this.txtCostTimeCustomer.setText("");
@@ -575,6 +577,8 @@ public class ConfigView extends javax.swing.JInternalFrame {
         this.txtQuantityCustomers.setText("");
         this.txtQuantityServer.setText("");
         this.txtTimeSimulation.setText("");
+        }
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void cbUnitTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbUnitTimeItemStateChanged
@@ -625,7 +629,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
             FilesManager filesManager = new FilesManager();
             DataEntry data = null;
             data = this.ReadDataInputs();
-            message("Se ha creado el archivo Data.csv exitosamente en el directorio Documentos", 1);
+            message("Se ha creado el archivo Data_Entrys_simulation.csv exitosamente en el directorio Documentos", 1);
             filesManager.save_txt(data, jf);
         } else {
             message("Verifica que ingresaste todos los datos al archivo archivos", 3);
@@ -719,20 +723,20 @@ public class ConfigView extends javax.swing.JInternalFrame {
         this.txtExtraTimeServerCost.setText(String.valueOf(data.getExtraTimeServerCost()));
         this.txtCostNormalOperation.setText(String.valueOf(data.getCostNormalOperation()));
         this.txtExtraOperationCost.setText(String.valueOf(data.getExtraOperationCost()));
-        
-        if (configArrive == null || configArrive.isClosed()) {
-            arriveTable = data.getArrivedCustomers();
+        arriveTable = data.getArrivedCustomers();
+//        if (configArrive == null || configArrive.isClosed()) {
+            
             configArrive = new ConfigViewArrive(data.getArrivedCustomers());
             PrincipalView.getDesktopPane().add(configArrive);
             
-        }
-        
-        if (configService == null || configService.isClosed()) {
+//        }
+        serviceTable = data.getServiceTime();
+//        if (configService == null || configService.isClosed()) {
             serviceTable = data.getServiceTime();
             configService = new ConfigViewService(data.getServiceTime());
             PrincipalView.getDesktopPane().add(configService);
 
-        }
+//        }
     }
 
 
