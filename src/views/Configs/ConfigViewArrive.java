@@ -18,7 +18,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
 
     public ConfigViewArrive() {
         initComponents();
-        String[] titles = {"Tiempo de llegada","Probabilidad"};
+        String[] titles = {"Tiempo de llegada", "Probabilidad"};
         modelArrive = new DefaultTableModel(null, titles);
         this.tableArrive.setModel(modelArrive);
 
@@ -275,14 +275,15 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String timeArrived = this.txtTimeArrived.getText();
         String probability = this.txtProbability.getText();
-        if (!timeArrived.isEmpty()&&!probability.isEmpty()) {
+        if (!timeArrived.isEmpty() && !probability.isEmpty()) {
 
-            if (this.validateData(Integer.parseInt(timeArrived.trim()),Double.parseDouble(probability + "f"))) {
+            if (this.validateData(Integer.parseInt(timeArrived.trim()), Double.parseDouble(probability + "f"))) {
 
                 this.modelArrive.addRow(new Object[]{
                     timeArrived,
                     probability
                 });
+
             } else {
                 JOptionPane.showMessageDialog(null, "Revise los datos o verifique que la probabilidad no sea mayor a 1");
             }
@@ -347,15 +348,15 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
 
     }
 
-    private boolean validateData(int timeArrived,double probability) {
+    private boolean validateData(int timeArrived, double probability) {
 
         if (timeArrived < 0
-                ||probability > 1.0f) {
+                || probability > 1.0f) {
             return false;
         }
 
         for (int i = 0; i < modelArrive.getRowCount(); i++) {
-            if (     addProbability(probability) > 1 
+            if (addProbability(probability) > 1
                     || timeArrived == Integer.parseInt(this.modelArrive.getValueAt(i, 0).toString())) {
                 return false;
             }
@@ -371,7 +372,9 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
         }
         return add + probability;
     }
-    
+
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

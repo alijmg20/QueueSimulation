@@ -50,7 +50,10 @@ public class DataEntry  {
         this.extraOperationCost = 0;
     }
 
-    public DataEntry(String timeUnit, boolean eventTable, double timeSimulation, int quantityCustomers, int quantityServers, DefaultTableModel ArrivedCustomers, DefaultTableModel ServiceTime, double costTimeCustomer, double costTimeWaitCustomer, double busyServercost, double idleServerCost, double extraTimeServerCost, double costNormalOperation, double extraOperationCost) {
+    public DataEntry(String timeUnit, boolean eventTable, double timeSimulation, int quantityCustomers, 
+            int quantityServers, DefaultTableModel ArrivedCustomers, DefaultTableModel ServiceTime, 
+            double costTimeCustomer, double costTimeWaitCustomer, double busyServercost, double idleServerCost, 
+            double extraTimeServerCost, double costNormalOperation, double extraOperationCost) {
         this.timeUnit = timeUnit;
         this.eventTable = eventTable;
         this.timeSimulation = timeSimulation;
