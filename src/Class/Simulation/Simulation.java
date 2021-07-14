@@ -17,6 +17,7 @@ public class Simulation {
     private int eventNumber;
     private int arrivalNumber;
     private int departureNumber;
+    private final int RANDOMNUMBER = 100;
 
     public Simulation(DataEntry data) {
 
@@ -50,7 +51,6 @@ public class Simulation {
         do {
 
             for (int i = 0; i < this.data.getQuantityServers(); i++) {
-
                 if (this.arrivalTime < this.DepartureTime[i]) {
 
                     //Arrival process
@@ -58,33 +58,21 @@ public class Simulation {
                     this.arrivalNumber++;
                     this.timeModeling = this.arrivalTime;
 
-                    for (int j = 0; j < this.data.getQuantityServers(); j++) {
+                    for (int j = 0; j < this.statusServers.length; j++) {
 
                         if (this.statusServers[j] == 0) {
 
                             this.statusServers[j] = 1;
-                            double timeRandom = Math.random() * 100;
-//                            double TS = 0;
-//                            double acum = 0;
-//                            for (int k = 0; k < this.data.getArrivedCustomers().getRowCount(); k++) {
-//                                System.out.println(timeRandom);
-//                                if (timeRandom > acum
-//                                        && timeRandom < (Double.parseDouble(this.data.getArrivedCustomers().getValueAt(k, 1).toString()) * 100)) {
-//                                    TS = Double.parseDouble(this.data.getArrivedCustomers().getValueAt(k, 0).toString());
-//                                    break;
-//                                }
-//                                
-//                                acum += Double.parseDouble(this.data.getArrivedCustomers().getValueAt(k, 1).toString()) * 100;
-//                                
-//                            }
-                            this.DepartureTime[j] = this.timeModeling + timeRandom;
+                            double TS = Math.random() * RANDOMNUMBER; //this.getRandomTSArrive();
+                            this.DepartureTime[j] = this.timeModeling + TS;
                             break;
 
-                        } else {
+                        } else if (this.isAllServersBusy(this.statusServers)) {
                             this.waitingLength++;
+                            break;
                         }
                     }
-                    double TE = Math.random() * 99;
+                    double TE = Math.random() * RANDOMNUMBER;
                     this.arrivalTime = this.timeModeling + TE;
                     number = this.arrivalNumber;
                 } else {
@@ -92,32 +80,28 @@ public class Simulation {
                     //departure process
                     eventName = "Salida del cliente";
                     this.departureNumber++;
+                    number = this.departureNumber;
                     this.timeModeling = this.DepartureTime[i];
 
                     if (this.waitingLength > 0) {
 
                         this.waitingLength--;
-                        double timeRandom = Math.random() * 100;
-//                        double TS = 0;
-//                        double acum = 0;
-//                        for (int k = 0; k < this.data.getArrivedCustomers().getRowCount(); k++) {
-//                            if (timeRandom > acum
-//                                    && timeRandom < (Double.parseDouble(this.data.getServiceTime().getValueAt(k, 1).toString()) * 100)) {
-//                                TS = Double.parseDouble(this.data.getServiceTime().getValueAt(k, 0).toString());
-//                                break;
-//                            }
-//                            acum += Double.parseDouble(this.data.getServiceTime().getValueAt(k, 1).toString()) * 100;
-//                        }
-
-                        this.DepartureTime[i] = this.timeModeling + timeRandom;
-
+                        double TS = Math.random() * RANDOMNUMBER;//this.getRandomTSService();
+                        this.DepartureTime[i] = this.timeModeling + TS;
+                        eventNumber++;
+                        eventModelTable.addRow(this.addRow(eventNumber, eventName, number, timeModeling,
+                                statusServers, this.waitingLength, arrivalTime, DepartureTime));
+                        break;
                     } else {
 
                         this.statusServers[i] = 0;
                         this.DepartureTime[i] = Integer.MAX_VALUE;
-
+                        eventNumber++;
+                        eventModelTable.addRow(this.addRow(eventNumber, eventName, number, timeModeling,
+                                statusServers, this.waitingLength, arrivalTime, DepartureTime));
+                        break;
                     }
-                    number = this.departureNumber;
+
                 }
                 eventNumber++;
                 eventModelTable.addRow(this.addRow(eventNumber, eventName, number, timeModeling,
@@ -173,6 +157,54 @@ public class Simulation {
             row.add(departureTime[i]);
         }
         return row.toArray();
+    }
+
+    private double getRandomTSArrive() {
+        double timeRandom = Math.random() * RANDOMNUMBER;
+        double TS = 0;
+        double acum = 0;
+        double acum2 = (Double.parseDouble(this.data.getArrivedCustomers().getValueAt(0, 1).toString()) * 100);
+        for (int k = 0; k < this.data.getArrivedCustomers().getRowCount(); k++) {
+
+            if (timeRandom > acum
+                    && timeRandom < acum2) {
+                TS = Double.parseDouble(this.data.getArrivedCustomers().getValueAt(k, 0).toString());
+
+                break;
+            }
+
+            acum += Double.parseDouble(this.data.getArrivedCustomers().getValueAt(k, 1).toString()) * 100;
+            acum2 += Double.parseDouble(this.data.getArrivedCustomers().getValueAt(k + 1, 1).toString()) * 100;
+        }
+        return TS;
+    }
+
+    private double getRandomTSService() {
+        double timeRandom = Math.random() * RANDOMNUMBER;
+        double TS = 0;
+        double acum = 0;
+        double acum2 = (Double.parseDouble(this.data.getServiceTime().getValueAt(0, 1).toString()) * 100);
+        for (int k = 0; k < this.data.getArrivedCustomers().getRowCount(); k++) {
+            if (timeRandom > acum
+                    && timeRandom < acum2) {
+                TS = Double.parseDouble(this.data.getServiceTime().getValueAt(k, 0).toString());
+                break;
+            }
+            acum += Double.parseDouble(this.data.getServiceTime().getValueAt(k, 1).toString()) * 100;
+            acum2 += Double.parseDouble(this.data.getServiceTime().getValueAt(k + 1, 1).toString()) * 100;
+        }
+        return TS;
+    }
+
+    private boolean isAllServersBusy(int[] serverTime) {
+
+        for (int i = 0; i < serverTime.length; i++) {
+            if (serverTime[i] != 1) {
+                return false;
+            }
+        }
+        return true;
+
     }
 
 }

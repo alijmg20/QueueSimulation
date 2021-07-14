@@ -327,8 +327,9 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ConfigView.arriveTable = this.modelArrive;
+        JOptionPane.showMessageDialog(null, "Los datos han sido registrados satisfactoriamente","Operacion realizada",JOptionPane.INFORMATION_MESSAGE);
         this.setVisible(false);
-
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private String convert() {
