@@ -6,9 +6,15 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class Simulation {
-
+/*
     private DataEntry data;
 
+    
+    
+    // CAMBIAR TODO A ENTERO
+    
+    
+    
     private int[] statusServers;
     private int waitingLength;
     private double timeModeling;
@@ -47,7 +53,7 @@ public class Simulation {
 
         eventModelTable.addRow(this.addRow(eventNumber, eventName, arrivalNumber, timeModeling,
                 statusServers, this.waitingLength, arrivalTime, DepartureTime));
-
+            
         do {
 
             for (int i = 0; i < this.data.getQuantityServers(); i++) {
@@ -63,7 +69,8 @@ public class Simulation {
                         if (this.statusServers[j] == 0) {
 
                             this.statusServers[j] = 1;
-                            double TS = Math.random() * RANDOMNUMBER; //this.getRandomTSArrive();
+                            //double TS = Math.random() * RANDOMNUMBER; //this.getRandomTSArrive();
+                            double TS = this.getRandomTSArrive();
                             this.DepartureTime[j] = this.timeModeling + TS;
                             break;
 
@@ -86,7 +93,8 @@ public class Simulation {
                     if (this.waitingLength > 0) {
 
                         this.waitingLength--;
-                        double TS = Math.random() * RANDOMNUMBER;//this.getRandomTSService();
+//                        double TS = Math.random() * RANDOMNUMBER;//this.getRandomTSService();
+                        double TS = this.getRandomTSService();
                         this.DepartureTime[i] = this.timeModeling + TS;
                         eventNumber++;
                         eventModelTable.addRow(this.addRow(eventNumber, eventName, number, timeModeling,
@@ -158,7 +166,8 @@ public class Simulation {
         }
         return row.toArray();
     }
-
+    
+    //PASAR TABLA A UNO
     private double getRandomTSArrive() {
         double timeRandom = Math.random() * RANDOMNUMBER;
         double TS = 0;
@@ -169,7 +178,6 @@ public class Simulation {
             if (timeRandom > acum
                     && timeRandom < acum2) {
                 TS = Double.parseDouble(this.data.getArrivedCustomers().getValueAt(k, 0).toString());
-
                 break;
             }
 
@@ -206,5 +214,5 @@ public class Simulation {
         return true;
 
     }
-
+*/
 }
