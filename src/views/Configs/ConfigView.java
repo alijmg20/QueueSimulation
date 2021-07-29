@@ -149,6 +149,11 @@ public class ConfigView extends javax.swing.JInternalFrame {
         jLabel5.setText("Cantidad de clientes que se permiten en el sistema: ");
 
         txtQuantityCustomers.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtQuantityCustomers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuantityCustomersActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Cantidad de servidores que permite el sistema: ");
@@ -505,7 +510,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -636,6 +641,10 @@ public class ConfigView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void txtQuantityCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityCustomersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQuantityCustomersActionPerformed
+
     private DefaultComboBoxModel loadComboTime(String[] unit) {
         DefaultComboBoxModel modelCb = new DefaultComboBoxModel();
 
@@ -688,20 +697,20 @@ public class ConfigView extends javax.swing.JInternalFrame {
         DataEntry data;
         String unitTime = this.cbUnitTime.getSelectedItem().toString();
         boolean eventTable = this.cbDecision.getSelectedItem().toString().equals("si");
-        double timeSimulation = Double.parseDouble(this.txtTimeSimulation.getText().replace(',', '.'));
+        int timeSimulation = Integer.parseInt(this.txtTimeSimulation.getText());
         int quantityCustomers = Integer.parseInt(this.txtQuantityCustomers.getText());
         int quantityServers = Integer.parseInt(this.txtQuantityServer.getText());
 
         /*
          cost variable
          */
-        double costTimeCustomer = Double.parseDouble(this.txtCostTimeCustomer.getText().replace(',', '.'));
-        double costTimeWaitCustomer = Double.parseDouble(this.txtCostTimeWaitCustomer.getText().replace(',', '.'));
-        double busyServercost = Double.parseDouble(this.txtBusyServerCost.getText().replace(',', '.'));
-        double idleServerCost = Double.parseDouble(this.txtIdleServerCost.getText().replace(',', '.'));
-        double extraTimeServerCost = Double.parseDouble(this.txtExtraTimeServerCost.getText().replace(',', '.'));
-        double costNormalOperation = Double.parseDouble(this.txtCostNormalOperation.getText().replace(',', '.'));
-        double extraOperationCost = Double.parseDouble(this.txtExtraOperationCost.getText().replace(',', '.'));
+        int costTimeCustomer = Integer.parseInt(this.txtCostTimeCustomer.getText().replace(',', '.'));
+        int costTimeWaitCustomer = Integer.parseInt(this.txtCostTimeWaitCustomer.getText().replace(',', '.'));
+        int busyServercost = Integer.parseInt(this.txtBusyServerCost.getText().replace(',', '.'));
+        int idleServerCost = Integer.parseInt(this.txtIdleServerCost.getText().replace(',', '.'));
+        int extraTimeServerCost = Integer.parseInt(this.txtExtraTimeServerCost.getText().replace(',', '.'));
+        int costNormalOperation = Integer.parseInt(this.txtCostNormalOperation.getText().replace(',', '.'));
+        int extraOperationCost = Integer.parseInt(this.txtExtraOperationCost.getText().replace(',', '.'));
 
         data = new DataEntry(unitTime, eventTable, timeSimulation, quantityCustomers, quantityServers, this.arriveTable, this.serviceTable, costTimeCustomer, costTimeWaitCustomer, busyServercost, idleServerCost, extraTimeServerCost, costNormalOperation, extraOperationCost);
         return data;

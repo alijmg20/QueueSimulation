@@ -277,7 +277,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
         String probability = this.txtProbability.getText();
         if (!timeArrived.isEmpty() && !probability.isEmpty()) {
 
-            if (this.validateData(Integer.parseInt(timeArrived.trim()), Double.parseDouble(probability + "f"))) {
+            if (this.validateData(Integer.parseInt(timeArrived.trim()), Integer.parseInt(probability + "f"))) {
 
                 this.modelArrive.addRow(new Object[]{
                     timeArrived,
@@ -349,7 +349,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
 
     }
 
-    private boolean validateData(int timeArrived, double probability) {
+    private boolean validateData(int timeArrived, int probability) {
 
         if (timeArrived < 0
                 || probability > 1.0f) {
@@ -365,11 +365,11 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
         return true;
     }
 
-    private double addProbability(double probability) {
-        double add = 0f;
+    private int addProbability(int probability) {
+        int add = 0;
 
         for (int i = 0; i < modelArrive.getRowCount(); i++) {
-            add += Double.parseDouble(modelArrive.getValueAt(i, 1).toString() + "f");
+            add += Integer.parseInt(modelArrive.getValueAt(i, 1).toString() + "f");
         }
         return add + probability;
     }

@@ -87,16 +87,16 @@ public class FilesManager {
                 st = new StringTokenizer(linea, ";");
                 data.setTimeUnit(st.nextToken().trim());
                 data.setEventTable(st.nextToken().trim());
-                data.setTimeSimulation(Double.parseDouble(st.nextToken().trim()));
+                data.setTimeSimulation(Integer.parseInt(st.nextToken().trim()));
                 data.setQuantityCustomers(Integer.parseInt(st.nextToken().trim()));
                 data.setQuantityServers(Integer.parseInt(st.nextToken().trim()));
-                data.setCostTimeCustomer(Double.parseDouble(st.nextToken().trim()));
-                data.setCostTimeWaitCustomer(Double.parseDouble(st.nextToken().trim()));
-                data.setBusyServercost(Double.parseDouble(st.nextToken().trim()));
-                data.setIdleServerCost(Double.parseDouble(st.nextToken().trim()));
-                data.setExtraTimeServerCost(Double.parseDouble(st.nextToken().trim()));
-                data.setCostNormalOperation(Double.parseDouble(st.nextToken().trim()));
-                data.setExtraOperationCost(Double.parseDouble(st.nextToken().trim()));
+                data.setCostTimeCustomer(Integer.parseInt(st.nextToken().trim()));
+                data.setCostTimeWaitCustomer(Integer.parseInt(st.nextToken().trim()));
+                data.setBusyServercost(Integer.parseInt(st.nextToken().trim()));
+                data.setIdleServerCost(Integer.parseInt(st.nextToken().trim()));
+                data.setExtraTimeServerCost(Integer.parseInt(st.nextToken().trim()));
+                data.setCostNormalOperation(Integer.parseInt(st.nextToken().trim()));
+                data.setExtraOperationCost(Integer.parseInt(st.nextToken().trim()));
 
             }
             while (!(linea = bu.readLine()).contains("Tiempo de servicio")) {

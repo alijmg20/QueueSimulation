@@ -275,7 +275,7 @@ public class ConfigViewService extends javax.swing.JInternalFrame {
         String probability = this.txtProbability.getText();
         if (!timeService.isEmpty() && !probability.isEmpty()) {
 
-            if (this.validateData(Integer.parseInt(timeService), Double.parseDouble(probability + "f"))) {
+            if (this.validateData(Integer.parseInt(timeService), Integer.parseInt(probability + "f"))) {
 
                 this.modelService.addRow(new Object[]{
                     timeService,
@@ -347,7 +347,7 @@ public class ConfigViewService extends javax.swing.JInternalFrame {
         this.tableArrive.setModel(modelService);
     }
 
-    private boolean validateData(int timeService, double probability) {
+    private boolean validateData(int timeService, int probability) {
 
         if (timeService < 0
                 || probability > 1.0f) {
@@ -364,11 +364,11 @@ public class ConfigViewService extends javax.swing.JInternalFrame {
         return true;
     }
 
-    private double addProbability(double probability) {
-        double add = 0f;
+    private int addProbability(int probability) {
+        int add = 00;
 
         for (int i = 0; i < modelService.getRowCount(); i++) {
-            add += Double.parseDouble(modelService.getValueAt(i, 1).toString() + "f");
+            add += Integer.parseInt(modelService.getValueAt(i, 1).toString() + "f");
 
         }
         return add + probability;

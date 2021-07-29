@@ -9,7 +9,7 @@ public class DataEntry  {
     
     private boolean eventTable;
     
-    private double timeSimulation;
+    private int timeSimulation;
     
     private int quantityCustomers ;
     
@@ -19,19 +19,19 @@ public class DataEntry  {
     
     private DefaultTableModel ServiceTime;
     
-    private double costTimeCustomer ; //cost time in customer service
+    private int costTimeCustomer ; //cost time in customer service
     
-    private double costTimeWaitCustomer ; // cost of customer waiting
+    private int costTimeWaitCustomer ; // cost of customer waiting
     
-    private double busyServercost; // cost server busy  
+    private int busyServercost; // cost server busy  
     
-    private double idleServerCost ; // cost any server idle
+    private int idleServerCost ; // cost any server idle
     
-    private double extraTimeServerCost; //Cost of extra time in servers
+    private int extraTimeServerCost; //Cost of extra time in servers
     
-    private double costNormalOperation; //cost normal operation in the system
+    private int costNormalOperation; //cost normal operation in the system
     
-    private double extraOperationCost; // cost extra operation in the system
+    private int extraOperationCost; // cost extra operation in the system
 
     public DataEntry() {
         this.timeUnit = "Horas";
@@ -50,10 +50,10 @@ public class DataEntry  {
         this.extraOperationCost = 0;
     }
 
-    public DataEntry(String timeUnit, boolean eventTable, double timeSimulation, int quantityCustomers, 
+    public DataEntry(String timeUnit, boolean eventTable, int timeSimulation, int quantityCustomers, 
             int quantityServers, DefaultTableModel ArrivedCustomers, DefaultTableModel ServiceTime, 
-            double costTimeCustomer, double costTimeWaitCustomer, double busyServercost, double idleServerCost, 
-            double extraTimeServerCost, double costNormalOperation, double extraOperationCost) {
+            int costTimeCustomer, int costTimeWaitCustomer, int busyServercost, int idleServerCost, 
+            int extraTimeServerCost, int costNormalOperation, int extraOperationCost) {
         this.timeUnit = timeUnit;
         this.eventTable = eventTable;
         this.timeSimulation = timeSimulation;
@@ -82,7 +82,7 @@ public class DataEntry  {
         return eventTable;
     }
 
-    public double getTimeSimulation() {
+    public int getTimeSimulation() {
         return timeSimulation;
     }
 
@@ -102,31 +102,31 @@ public class DataEntry  {
         return ServiceTime;
     }
 
-    public double getCostTimeCustomer() {
+    public int getCostTimeCustomer() {
         return costTimeCustomer;
     }
 
-    public double getCostTimeWaitCustomer() {
+    public int getCostTimeWaitCustomer() {
         return costTimeWaitCustomer;
     }
 
-    public double getBusyServercost() {
+    public int getBusyServercost() {
         return busyServercost;
     }
 
-    public double getIdleServerCost() {
+    public int getIdleServerCost() {
         return idleServerCost;
     }
 
-    public double getExtraTimeServerCost() {
+    public int getExtraTimeServerCost() {
         return extraTimeServerCost;
     }
 
-    public double getCostNormalOperation() {
+    public int getCostNormalOperation() {
         return costNormalOperation;
     }
 
-    public double getExtraOperationCost() {
+    public int getExtraOperationCost() {
         return extraOperationCost;
     }
     
@@ -144,7 +144,7 @@ public class DataEntry  {
         this.eventTable = eventTable.equals("si");
     }
 
-    public void setTimeSimulation(double timeSimulation) {
+    public void setTimeSimulation(int timeSimulation) {
         this.timeSimulation = timeSimulation;
     }
 
@@ -164,31 +164,31 @@ public class DataEntry  {
         this.ServiceTime = ServiceTime;
     }
 
-    public void setCostTimeCustomer(double costTimeCustomer) {
+    public void setCostTimeCustomer(int costTimeCustomer) {
         this.costTimeCustomer = costTimeCustomer;
     }
 
-    public void setCostTimeWaitCustomer(double costTimeWaitCustomer) {
+    public void setCostTimeWaitCustomer(int costTimeWaitCustomer) {
         this.costTimeWaitCustomer = costTimeWaitCustomer;
     }
 
-    public void setBusyServercost(double busyServercost) {
+    public void setBusyServercost(int busyServercost) {
         this.busyServercost = busyServercost;
     }
 
-    public void setIdleServerCost(double idleServerCost) {
+    public void setIdleServerCost(int idleServerCost) {
         this.idleServerCost = idleServerCost;
     }
 
-    public void setExtraTimeServerCost(double extraTimeServerCost) {
+    public void setExtraTimeServerCost(int extraTimeServerCost) {
         this.extraTimeServerCost = extraTimeServerCost;
     }
 
-    public void setCostNormalOperation(double costNormalOperation) {
+    public void setCostNormalOperation(int costNormalOperation) {
         this.costNormalOperation = costNormalOperation;
     }
 
-    public void setExtraOperationCost(double extraOperationCost) {
+    public void setExtraOperationCost(int extraOperationCost) {
         this.extraOperationCost = extraOperationCost;
     }
     
