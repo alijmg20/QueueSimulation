@@ -5,5 +5,28 @@ public class ServersData {
     //Tiempos en servicio
     
     private int DepartureT;
-    private int ServerTime;
+    private int ServerInUse;
+    
+    public ServersData() {
+        this.DepartureT = 0;
+        this.ServerInUse = 0;
+    }
+
+    public int getDepartureT() {
+        return DepartureT;
+    }
+
+    public void setDepartureT(int DepartureT) {
+        this.DepartureT = DepartureT;
+    }
+
+    public int getServerInUse() {
+        return ServerInUse;
+    }
+
+    public void setServerInUse(int ServerInUse) {
+        this.ServerInUse = ServerInUse;
+    }
+    
+    
 }

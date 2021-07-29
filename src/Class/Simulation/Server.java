@@ -10,9 +10,6 @@ public class Server {
         this.statusServers = statusServers;
         this.DepartureTime = DepartureTime;
     }
-    
-    
-    
 
     public int getStatusServers() {
         return statusServers;
@@ -26,12 +23,8 @@ public class Server {
         this.statusServers = statusServers;
     }
 
-    
-
     public void setDepartureTime(double DepartureTime) {
         this.DepartureTime = DepartureTime;
     }
-    
-    
-    
+
 }
