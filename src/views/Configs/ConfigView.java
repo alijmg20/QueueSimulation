@@ -138,7 +138,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Cantidad de tiempo de simulación: ");
 
-        txtTimeSimulation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.00"))));
+        txtTimeSimulation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtTimeSimulation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTimeSimulationActionPerformed(evt);
@@ -258,7 +258,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Costos de tiempo en servicio del cliente: ");
 
-        txtCostTimeCustomer.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.00"))));
+        txtCostTimeCustomer.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         lb1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lb1.setText("$/");
@@ -266,7 +266,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel11.setText("Costos de tiempo en espera del cliente: ");
 
-        txtCostTimeWaitCustomer.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.00"))));
+        txtCostTimeWaitCustomer.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         lb2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lb2.setText("$/");
@@ -274,7 +274,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
         lb3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lb3.setText("$/");
 
-        txtBusyServerCost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.00"))));
+        txtBusyServerCost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel14.setText("Costo de cada servidor ocupado: ");
@@ -282,7 +282,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel15.setText("Costo de cada servidor desocupado: ");
 
-        txtIdleServerCost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.00"))));
+        txtIdleServerCost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         lb4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lb4.setText("$/");
@@ -290,7 +290,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel17.setText("Costo de cada servidor en tiempo extra: ");
 
-        txtExtraTimeServerCost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.00"))));
+        txtExtraTimeServerCost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         lb5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lb5.setText("$/");
@@ -298,7 +298,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel19.setText("Costo de operación normal del sistema: ");
 
-        txtCostNormalOperation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.00"))));
+        txtCostNormalOperation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         lb6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lb6.setText("$/");
@@ -306,7 +306,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
         lb7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lb7.setText("$/");
 
-        txtExtraOperationCost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.00"))));
+        txtExtraOperationCost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel22.setText("Costo de operación extra del sistema: ");
@@ -510,7 +510,7 @@ public class ConfigView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -704,13 +704,13 @@ public class ConfigView extends javax.swing.JInternalFrame {
         /*
          cost variable
          */
-        int costTimeCustomer = Integer.parseInt(this.txtCostTimeCustomer.getText().replace(',', '.'));
-        int costTimeWaitCustomer = Integer.parseInt(this.txtCostTimeWaitCustomer.getText().replace(',', '.'));
-        int busyServercost = Integer.parseInt(this.txtBusyServerCost.getText().replace(',', '.'));
-        int idleServerCost = Integer.parseInt(this.txtIdleServerCost.getText().replace(',', '.'));
-        int extraTimeServerCost = Integer.parseInt(this.txtExtraTimeServerCost.getText().replace(',', '.'));
-        int costNormalOperation = Integer.parseInt(this.txtCostNormalOperation.getText().replace(',', '.'));
-        int extraOperationCost = Integer.parseInt(this.txtExtraOperationCost.getText().replace(',', '.'));
+        int costTimeCustomer = Integer.parseInt(this.txtCostTimeCustomer.getText());
+        int costTimeWaitCustomer = Integer.parseInt(this.txtCostTimeWaitCustomer.getText());
+        int busyServercost = Integer.parseInt(this.txtBusyServerCost.getText());
+        int idleServerCost = Integer.parseInt(this.txtIdleServerCost.getText());
+        int extraTimeServerCost = Integer.parseInt(this.txtExtraTimeServerCost.getText());
+        int costNormalOperation = Integer.parseInt(this.txtCostNormalOperation.getText());
+        int extraOperationCost = Integer.parseInt(this.txtExtraOperationCost.getText());
 
         data = new DataEntry(unitTime, eventTable, timeSimulation, quantityCustomers, quantityServers, this.arriveTable, this.serviceTable, costTimeCustomer, costTimeWaitCustomer, busyServercost, idleServerCost, extraTimeServerCost, costNormalOperation, extraOperationCost);
         return data;

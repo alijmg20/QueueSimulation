@@ -54,6 +54,7 @@ public class DataEntry  {
             int quantityServers, DefaultTableModel ArrivedCustomers, DefaultTableModel ServiceTime, 
             int costTimeCustomer, int costTimeWaitCustomer, int busyServercost, int idleServerCost, 
             int extraTimeServerCost, int costNormalOperation, int extraOperationCost) {
+        
         this.timeUnit = timeUnit;
         this.eventTable = eventTable;
         this.timeSimulation = timeSimulation;

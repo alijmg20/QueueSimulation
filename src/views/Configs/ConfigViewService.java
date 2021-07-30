@@ -93,7 +93,7 @@ public class ConfigViewService extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Probabilidad: ");
 
-        txtProbability.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0,00"))));
+        txtProbability.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Tiempo de servicio: ");
@@ -275,14 +275,14 @@ public class ConfigViewService extends javax.swing.JInternalFrame {
         String probability = this.txtProbability.getText();
         if (!timeService.isEmpty() && !probability.isEmpty()) {
 
-            if (this.validateData(Integer.parseInt(timeService), Integer.parseInt(probability + "f"))) {
+            if (this.validateData(Integer.parseInt(timeService), Integer.parseInt(probability))) {
 
                 this.modelService.addRow(new Object[]{
                     timeService,
                     probability,
                 });
             } else {
-                JOptionPane.showMessageDialog(null, "Revise los datos o verifique que la probabilidad no sea mayor a 1");
+                JOptionPane.showMessageDialog(null, "Revise los datos o verifique que la probabilidad no sea mayor a 100");
             }
         } else {
             JOptionPane.showMessageDialog(null, "No ingreso algun dato para la fila nueva");
@@ -350,12 +350,12 @@ public class ConfigViewService extends javax.swing.JInternalFrame {
     private boolean validateData(int timeService, int probability) {
 
         if (timeService < 0
-                || probability > 1.0f) {
+                || probability > 100) {
             return false;
         }
 
         for (int i = 0; i < modelService.getRowCount(); i++) {
-            if ( addProbability(probability) > 1
+            if ( addProbability(probability) > 100
                     || timeService == Integer.parseInt(modelService.getValueAt(i, 0).toString())) {
 
                 return false;
@@ -365,10 +365,10 @@ public class ConfigViewService extends javax.swing.JInternalFrame {
     }
 
     private int addProbability(int probability) {
-        int add = 00;
+        int add = 0;
 
         for (int i = 0; i < modelService.getRowCount(); i++) {
-            add += Integer.parseInt(modelService.getValueAt(i, 1).toString() + "f");
+            add += Integer.parseInt(modelService.getValueAt(i, 1).toString());
 
         }
         return add + probability;

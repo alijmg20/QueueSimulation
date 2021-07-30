@@ -93,7 +93,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Probabilidad: ");
 
-        txtProbability.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0,00"))));
+        txtProbability.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Tiempo de Llegada: ");
@@ -277,7 +277,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
         String probability = this.txtProbability.getText();
         if (!timeArrived.isEmpty() && !probability.isEmpty()) {
 
-            if (this.validateData(Integer.parseInt(timeArrived.trim()), Integer.parseInt(probability + "f"))) {
+            if (this.validateData(Integer.parseInt(timeArrived.trim()), Integer.parseInt(probability))) {
 
                 this.modelArrive.addRow(new Object[]{
                     timeArrived,
@@ -285,7 +285,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
                 });
 
             } else {
-                JOptionPane.showMessageDialog(null, "Revise los datos o verifique que la probabilidad no sea mayor a 1");
+                JOptionPane.showMessageDialog(null, "Revise los datos o verifique que la probabilidad no sea mayor a 100");
             }
         } else {
             JOptionPane.showMessageDialog(null, "No ingreso algun dato para la fila nueva");
@@ -352,12 +352,12 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
     private boolean validateData(int timeArrived, int probability) {
 
         if (timeArrived < 0
-                || probability > 1.0f) {
+                || probability > 100) {
             return false;
         }
 
         for (int i = 0; i < modelArrive.getRowCount(); i++) {
-            if (addProbability(probability) > 1
+            if (addProbability(probability) > 100
                     || timeArrived == Integer.parseInt(this.modelArrive.getValueAt(i, 0).toString())) {
                 return false;
             }
@@ -369,7 +369,7 @@ public class ConfigViewArrive extends javax.swing.JInternalFrame {
         int add = 0;
 
         for (int i = 0; i < modelArrive.getRowCount(); i++) {
-            add += Integer.parseInt(modelArrive.getValueAt(i, 1).toString() + "f");
+            add += Integer.parseInt(modelArrive.getValueAt(i, 1).toString());
         }
         return add + probability;
     }
