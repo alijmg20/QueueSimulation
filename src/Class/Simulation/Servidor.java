@@ -19,13 +19,18 @@ public class Servidor {
                 this.ServerData[i][j] = new ServersData();
             }
         }
+        
         this.timeinIdle = new int[data2.getQuantityServers()];
         this.timeTotals = new int[data2.getQuantityServers()];
     }
 
     public void insertServerData(int Departure, int InUse, int Server) {
-        this.ServerData[ServerData[Server - 1].length][Server - 1].setDepartureT(Departure);
-        this.ServerData[ServerData[Server - 1].length][Server - 1].setServerInUse(InUse);
+        for (int i=1;i<data2.getQuantityCustomers();i++) {
+            if (ServerData[i][Server -1].getEventNumb()==0) {
+                this.ServerData[i][Server - 1].setDepartureT(Departure);
+                this.ServerData[i][Server - 1].setServerInUse(InUse);
+            }
+        }
         this.timeTotals[Server - 1] += Departure;
     }
 

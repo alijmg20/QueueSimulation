@@ -6,10 +6,12 @@ public class ServersData {
     
     private int DepartureT;
     private int ServerInUse; // ocupado - desocupado
-    private int ClientTime;  //
+    private int EventNumb;  // numero de envento
+    
     public ServersData() {
         this.DepartureT = 99999;
         this.ServerInUse = 0;
+        this.EventNumb = -1;
     }
 
     public int getDepartureT() {
@@ -27,6 +29,12 @@ public class ServersData {
     public void setServerInUse(int ServerInUse) {
         this.ServerInUse = ServerInUse;
     }
-    
-    
+
+    public int getEventNumb() {
+        return EventNumb;
+    }
+
+    public void setEventNumb(int NumbClient) {
+        this.EventNumb = NumbClient;
+    }
 }

@@ -52,6 +52,7 @@ public class Cliente {
 
         DataC.get(i).setTotalServiceTime(TiempoSalida - DataC.get(i).getArrivedTime());
         DataC.get(i).setExitTime(TiempoSalida);
+        
     }
 
 }

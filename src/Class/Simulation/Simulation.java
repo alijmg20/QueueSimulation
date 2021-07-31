@@ -69,13 +69,13 @@ public class Simulation {
                 int j = 0;
                 
                 while(j < servers.data2.getQuantityServers()){
-                    int i = 0;    
+                    int i = 1;    
                     while(i <servers.data2.getQuantityServers()){
-                        if(servers.ServerData[i][j].getServerInUse() == 0){
+                        if(servers.ServerData[i][j].getServerInUse() == 0 && servers.ServerData[i][j].getEventNumb() == 0){ //SS=0 Si
                             
                             
                             
-                        }else{
+                        }else if(servers.ServerData[i][j].getServerInUse() == 1 && servers.ServerData[i][j].getEventNumb() == 0){ //SS=0 No
                             
                         }
                     }
