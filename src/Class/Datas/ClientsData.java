@@ -18,6 +18,14 @@ public class ClientsData {
         this.Service = 0;
     }
 
+    public void setProcessType(int ProcessType) {
+        this.ProcessType = ProcessType;
+    }
+
+    public int getProcessType() {
+        return ProcessType;
+    }
+
     public int getExitTime() {
         return ExitTime;
     }

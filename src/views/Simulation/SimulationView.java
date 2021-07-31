@@ -18,8 +18,8 @@ public class SimulationView extends javax.swing.JInternalFrame {
     public SimulationView(DataEntry data) {
         initComponents();
         this.data = data;
-        //simulation = new Simulation(data);
-        //dataOut = simulation.process();
+        simulation = new Simulation(data);
+        dataOut = simulation.process();
         this.tableSimulation.setModel(dataOut.getEventTable());
     }
 
