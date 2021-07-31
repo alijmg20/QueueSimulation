@@ -4,6 +4,7 @@ import Class.Datas.ClientsData;
 import Class.Datas.DataEntry;
 import Class.Datas.DataOut;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,7 +40,7 @@ public class Simulation {
         this.arrivalTime = 0;
         this.DepartureTime = new int[data.getQuantityServers()];
         for (int i = 0; i < data.getQuantityServers(); i++) {
-            this.DepartureTime[i] = Integer.MAX_VALUE;
+            this.DepartureTime[i] = 999999;
         }
         this.eventNumber = 0;
         this.arrivalNumber = 0;
@@ -49,7 +50,7 @@ public class Simulation {
     public DataOut process() {
 
         Cliente client = new Cliente();
-        
+        Servidor servers = new Servidor(data);
         DataOut dataOut = new DataOut();
         String eventName = "condicion inicial";
         int number;
@@ -57,76 +58,31 @@ public class Simulation {
 
         eventModelTable.addRow(this.addRow(eventNumber, eventName, arrivalNumber, timeModeling,
                 statusServers, this.waitingLength, arrivalTime, DepartureTime));
+        int menorServidor = 0;
+        do {
+            menorServidor = this.menor(servers.timeTotals);
+            if(arrivalTime < menorServidor){
             
-//        do {
-//
-//            for (int i = 0; i < this.data.getQuantityServers(); i++) {
-//                if (this.arrivalTime < this.DepartureTime[i]) {
-//                    
-//                    //Arrival process
-//                    
-//                    eventName = "Llegada del cliente";
-//                    this.arrivalNumber++;
-//                    this.timeModeling = this.arrivalTime;
-//
-//                    for (int j = 0; j < this.statusServers.length; j++) {
-//
-//                        if (this.statusServers[j] == 0) {
-//
-//                            this.statusServers[j] = 1;
-//                            //int TS = Math.random() * RANDOMNUMBER; //this.getRandomTSArrive();
-//                            int TS = this.getRandomTS(this.data.getArrivedCustomers());
-//                            this.DepartureTime[j] = this.timeModeling + TS;
-//                            break;
-//
-//                        } else if () {
-//                            this.waitingLength++;
-//                            break;
-//                        }
-//                    }
-//                    
-//                    Random rand = new Random();
-//                    int TE = rand.nextInt() * RANDOMNUMBER;
-//                    this.arrivalTime = this.timeModeling + TE;
-//                    number = this.arrivalNumber;
-//                    
-//                } else {
-//                    
-//                    //departure process
-//                    
-//                    eventName = "Salida del cliente";
-//                    this.departureNumber++;
-//                    number = this.departureNumber;
-//                    this.timeModeling = this.DepartureTime[i];
-//
-//                    if (this.waitingLength > 0) {
-//
-//                        this.waitingLength--;
-////                        int TS = Math.random() * RANDOMNUMBER;//this.getRandomTSService();
-//                        int TS = this.getRandomTSService();
-//                        this.DepartureTime[i] = this.timeModeling + TS;
-//                        eventNumber++;
-//                        eventModelTable.addRow(this.addRow(eventNumber, eventName, number, timeModeling,
-//                                statusServers, this.waitingLength, arrivalTime, DepartureTime));
-//                        break;
-//                    } else {
-//
-//                        this.statusServers[i] = 0;
-//                        this.DepartureTime[i] = Integer.MAX_VALUE;
-//                        eventNumber++;
-//                        eventModelTable.addRow(this.addRow(eventNumber, eventName, number, timeModeling,
-//                                statusServers, this.waitingLength, arrivalTime, DepartureTime));
-//                        break;                        
-//                        
-//                    }
-//
-//                }
-//                eventNumber++;
-//                eventModelTable.addRow(this.addRow(eventNumber, eventName, number, timeModeling,
-//                        statusServers, this.waitingLength, arrivalTime, DepartureTime));
-//            }
-//
-//        } while (timeModeling < data.getTimeSimulation());
+                //LLEGADAAAAAAAAAAAAAAAAA
+                
+                this.timeModeling = this.arrivalTime;
+                int j = 0;
+                
+                while(j < servers.data2.getQuantityServers()){
+                    int i = 0;    
+                    while(i <servers.data2.getQuantityServers()){
+                        if(servers.ServerData[i][j].getServerInUse() == 0){
+                            
+                            
+                            
+                        }else{
+                            
+                        }
+                    }
+                }
+            }
+            
+        } while (timeModeling < data.getTimeSimulation());
         dataOut.setEventTable(eventModelTable);
         return dataOut;
     }
@@ -156,8 +112,8 @@ public class Simulation {
             titles[contTitles] = "DT" + (i + 1);
         }
         return titles;
-    }
-
+    } 
+    
     //AÑADE UNA FILLA NUEVA A LA TABLA, DEBEMOS MODIFICARLA PARA CON LA NUEVA FORMA DE INGRESO
     private Object[] addRow(int eventNumber, String eventName, int number,
             int timeModeling, int[] statusServers, int waitingLenght, int arrivalTime, int[] departureTime) {
@@ -198,6 +154,11 @@ public class Simulation {
             acum2 += Integer.parseInt(table.getValueAt(k + 1, 1).toString());
         }
         return TS;
+    }
+    
+    private int menor(int[] datos ){
+        Arrays.sort(datos);
+        return datos[0];
     }
 
 //    private boolean isAllServersBusy(int[] serverTime) {

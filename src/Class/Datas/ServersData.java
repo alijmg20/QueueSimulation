@@ -5,10 +5,10 @@ public class ServersData {
     //Tiempos en servicio
     
     private int DepartureT;
-    private int ServerInUse;
-    
+    private int ServerInUse; // ocupado - desocupado
+    private int ClientTime;  //
     public ServersData() {
-        this.DepartureT = 0;
+        this.DepartureT = 99999;
         this.ServerInUse = 0;
     }
 
